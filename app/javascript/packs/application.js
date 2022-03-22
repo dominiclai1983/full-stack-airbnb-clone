@@ -15,4 +15,6 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import 'bootstrap/dist/css/bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-dates/lib/css/_datepicker.css'
+import "@fortawesome/fontawesome-free/css/all"
