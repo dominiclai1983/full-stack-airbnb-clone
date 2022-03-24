@@ -99,14 +99,14 @@ const LoginTrueDropDown = (props) => {
       </Dropdown.Toggle>
       <Dropdown.Menu align="right" id="login-menu">
 
-        <Dropdown.Item href="#/">Your Booking</Dropdown.Item>
+        <Dropdown.Item href="/account/booking">Your Booking</Dropdown.Item>
         <Dropdown.Divider />
 
-        <Dropdown.Item href="#/">Your Properties</Dropdown.Item>
-        <Dropdown.Item href="#/">Your Rental</Dropdown.Item>
+        <Dropdown.Item href="/account/property">Your Properties</Dropdown.Item>
+        <Dropdown.Item href="/account/rental">Your Rental</Dropdown.Item>
         <Dropdown.Divider />
 
-        <Dropdown.Item href="#/">Your Rental</Dropdown.Item>
+        <Dropdown.Item href="/account">Your Account</Dropdown.Item>
         <Dropdown.Divider />
 
         <Dropdown.Item href="/" onClick={onLogOut}>

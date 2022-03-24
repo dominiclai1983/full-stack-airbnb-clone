@@ -11,4 +11,13 @@ class StaticPagesController < ApplicationController
   def login
     render 'login'
   end
+
+  def account
+    render 'account'
+  end
+
+  def user_property
+    render 'user_property'
+  end
+
 end
