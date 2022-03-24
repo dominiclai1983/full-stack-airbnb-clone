@@ -6,17 +6,18 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
+import { safeCredentials, handleErrors } from './utils/fetchHelper';
 
 function Layout(props){
 
   const [isLogin, setIsLogin] = useState(false);
-  const [username, setUsername] = useState("@username");
+  const [username, setUsername] = useState("");
 
   useEffect(async () => {
     const result = await axios('/api/authenticated',
     );
     setIsLogin(result.data.authenticated);
-    setUsername(result.data.authenticated.username);
+    setUsername(result.data.username);
   }, []);
 
   const handleLoginOut = () => {
@@ -36,7 +37,7 @@ function Layout(props){
       <Navbar bg="light" variant="light">
         <Container>
         <Navbar.Brand href="#home">Airbnb <i className="fab fa-airbnb"></i></Navbar.Brand>
-          {isLogin? <LoginTrueDropDown username={username} /> : <LoginFalseDropDown onLogOut={handleLoginOut} />}
+          {isLogin? <LoginTrueDropDown username={username} onLogOut={handleLoginOut}/> : <LoginFalseDropDown />}
         </Container>
       </Navbar>
       {props.children}
@@ -69,10 +70,10 @@ const LoginFalseDropDown = () => {
           <i className="fas fa-bars"></i>
         </Dropdown.Toggle>
         <Dropdown.Menu align="right" id="singin-menu">
-          <Dropdown.Item href="/">
+          <Dropdown.Item href="/login">
             <Button variant="secondary" size="lg" block>Sign In</Button>
           </Dropdown.Item>
-          <Dropdown.Item href="/">
+          <Dropdown.Item href="/login">
             <Button variant="outline-secondary" size="lg" block>Create An Account</Button>
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -89,7 +90,7 @@ const LoginTrueDropDown = (props) => {
   return (
     <>
       <Nav className="d-flex">
-        <Nav.Link href="/" className="d-blo">Home
+        <Nav.Link href="/" className="d-block">Home
         </Nav.Link>
       </Nav>
       <Dropdown>
@@ -97,14 +98,20 @@ const LoginTrueDropDown = (props) => {
         Welcome! ${username}
       </Dropdown.Toggle>
       <Dropdown.Menu align="right" id="login-menu">
+
         <Dropdown.Item href="#/">Your Booking</Dropdown.Item>
         <Dropdown.Divider />
+
         <Dropdown.Item href="#/">Your Properties</Dropdown.Item>
         <Dropdown.Item href="#/">Your Rental</Dropdown.Item>
         <Dropdown.Divider />
+
         <Dropdown.Item href="#/">Your Rental</Dropdown.Item>
         <Dropdown.Divider />
-        <Button variant="outline-secondary" className="d-none d-lg-block" onClick={onLogOut}>Sign Out</Button>
+
+        <Dropdown.Item href="/" onClick={onLogOut}>
+        <Button variant="outline-secondary" size="lg" block>Sign Out</Button>
+        </Dropdown.Item>
       </Dropdown.Menu>
       </Dropdown>
     </>
