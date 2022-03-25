@@ -11,6 +11,8 @@ import {
   checkStatus, 
   json } from '@utils/fetchHelper';
 
+import './booking.scss'
+
 const Booking = () => {
 
   const [bookings, setBookings] = useState([]);
@@ -63,8 +65,8 @@ const Booking = () => {
           </Col>
 
           <Col xs={12}>
-          {bookings.map(booking => {
-            return <BookingList key={booking.id} booking={booking} />
+          {bookings.map((booking, index) => {
+            return <BookingList key={booking.id} booking={booking} index={index}/>
           })}
           </Col>
         </Row>
