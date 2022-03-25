@@ -24,4 +24,8 @@ class StaticPagesController < ApplicationController
     render 'user_property'
   end
 
+  def booking
+    render 'booking'
+  end
+
 end

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
-import { safeCredentials, handleErrors } from './utils/fetchHelper';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 function Layout(props){
 

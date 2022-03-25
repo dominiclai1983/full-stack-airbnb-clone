@@ -24,6 +24,45 @@ module Api
       render 'api/bookings/index'
     end
 
+    def booking
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+    
+      if session
+        @bookings = session.user.bookings
+        render 'api/bookings/index'
+      else
+        render json: {bookings: []}
+      end
+       
+    end
+
+    def booking_sort_by_upcoming
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        @bookings = session.user.bookings.where('start_date > ?', DateTime.now)
+        render 'api/bookings/index'
+      else
+        render json: {bookings: []}
+      end
+
+    end
+
+    def booking_sort_by_completed
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        @bookings = session.user.bookings.where('start_date < ?', DateTime.now)
+        render 'api/bookings/index'
+      else
+        render json: {bookings: []}
+      end
+
+    end
+
     private
 
     def booking_params

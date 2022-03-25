@@ -13,5 +13,18 @@ module Api
 
       render 'api/properties/show', status: :ok
     end
+
+    def get_property_by_user_id
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        @properties = session.user.properties
+        render 'api/properties/index', status: :ok
+      else
+        render json: {properties: []}
+      end
+    end
+
   end
 end
