@@ -38,6 +38,7 @@ function Layout(props){
         <Container>
         <Navbar.Brand href="#home">Airbnb <i className="fab fa-airbnb"></i></Navbar.Brand>
           {isLogin? <LoginTrueDropDown username={username} onLogOut={handleLoginOut}/> : <LoginFalseDropDown />}
+          {/* this is a very expensive lesson on wrongly passing down!!!*/}
         </Container>
       </Navbar>
       {props.children}
@@ -57,10 +58,10 @@ const LoginFalseDropDown = () => {
     <Nav className="d-flex">
       <Nav.Link href="/" className="justify-content-between">Home
       </Nav.Link>
-      <Nav.Link href="">
+      <Nav.Link href="/login">
         <Button variant="secondary" className="d-none d-lg-block">Sign In</Button>
       </Nav.Link>
-      <Nav.Link href="/">
+      <Nav.Link href="/signup">
         <Button variant="outline-secondary" className="d-none d-lg-block">Create An Account</Button>
       </Nav.Link>
     </Nav>
@@ -73,7 +74,7 @@ const LoginFalseDropDown = () => {
           <Dropdown.Item href="/login">
             <Button variant="secondary" size="lg" block>Sign In</Button>
           </Dropdown.Item>
-          <Dropdown.Item href="/login">
+          <Dropdown.Item href="/signup">
             <Button variant="outline-secondary" size="lg" block>Create An Account</Button>
           </Dropdown.Item>
         </Dropdown.Menu>

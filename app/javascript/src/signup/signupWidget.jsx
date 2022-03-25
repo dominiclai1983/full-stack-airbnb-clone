@@ -1,6 +1,5 @@
 // signupWidget.jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 class SignupWidget extends React.Component {
@@ -87,10 +86,11 @@ class SignupWidget extends React.Component {
           <button type="submit" className="btn btn-danger btn-block btn-lg">Sign up</button>
         </form>
         <hr/>
-        <p className="mb-0">Already have an account? <a className="text-primary" onClick={this.props.toggle}>Log in</a></p>
+        <p className="mb-0">Already have an account? <a className="text-primary" href="/login">Log in</a></p>
       </React.Fragment>
     )
   }
 }
 
 export default SignupWidget
+

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
                                   #I know this one is super difficlut. But I want to try. 
 
   get '/login'                 => 'static_pages#login'
+  get '/signup'                => 'static_pages#signup'
 
   #Account API
   get '/account'               => 'static_pages#account'

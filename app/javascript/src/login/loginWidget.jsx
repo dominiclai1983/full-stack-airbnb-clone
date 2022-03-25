@@ -57,7 +57,7 @@ class LoginWidget extends React.Component {
           {error && <p className="text-danger mt-2">{error}</p>}
         </form>
         <hr/>
-        <p className="mb-0">Don't have an account? <a className="text-primary" onClick={this.props.toggle}>Sign up</a></p>
+        <p className="mb-0">Don't have an account? <a className="text-primary" href="/signup">Create An Account!</a></p>
       </React.Fragment>
     )
   }
