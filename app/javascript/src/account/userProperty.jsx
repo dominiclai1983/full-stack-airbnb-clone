@@ -24,12 +24,12 @@ const UserProperty = () => {
     <>
       <Container>
         <Row>
-          <div className="d-flex">
+          <Col xs={12} className="d-flex my-1">
             <h2 className="flex-grow-1">Your Properties</h2>
-            <a href="/account/property/add">
+            <a href="/account/property/add" className="text-right">
               <Button variant="danger">Add Property</Button>
             </a>
-          </div>
+          </Col>
 
           <Col xs={12}>
             {properties.map(property => {
