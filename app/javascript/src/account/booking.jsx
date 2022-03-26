@@ -1,39 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import Container from 'react-bootstrap/Container';
-import axios from 'axios';
-import BookingList from './component/bookinglist';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
-import { 
-  safeCredentials, 
-  handleErrors, 
-  checkStatus, 
-  json } from '@utils/fetchHelper';
+import axios from 'axios';
+import BookingList from './component/bookinglist';
+
 
 import './booking.scss'
 
 const Booking = () => {
 
-  const [bookings, setBookings] = useState([]);
+  const [bookings, setBookings] = useState([]);//any array to hold all the booking returns from server
   const [mode, setMode] = useState('upcoming')//with mode: upcoming, completed, cancelled
 
-  const handeUpcoming = async () => {
+  const handleUpcoming = async () => {
 
     const result = await axios('/api/bookings',    
     );
-    console.log(result.data.bookings);
-    console.log(result.data);
     setBookings(result.data.bookings);
   }
 
-  useEffect(handeUpcoming, []);
+  useEffect(handleUpcoming, []);
 
   const handleCompleted = async () => {
 
    try{
      const result = await axios.get('/api/bookings/completed',);
-     console.log(result.data);
      setBookings(result.data.bookings);
    }catch(err){
      console.log(err);
@@ -45,10 +38,10 @@ const Booking = () => {
     <>
       <Container>
         <Row>
-
+          <h2>Your Bookings</h2>
           <Col xs={12} className="ml-4 my-3">
             <Badge pill variant={(mode === 'upcoming')? "primary": "secondary"} onClick={() => {
-              handeUpcoming();
+              handleUpcoming();
               setMode('upcoming')}} >
             Upcoming
             </Badge>{' '}
@@ -66,7 +59,7 @@ const Booking = () => {
 
           <Col xs={12}>
           {bookings.map((booking, index) => {
-            return <BookingList key={booking.id} booking={booking} index={index}/>
+            return <BookingList key={booking.id} booking={booking} index={index} mode={mode} />
           })}
           </Col>
         </Row>

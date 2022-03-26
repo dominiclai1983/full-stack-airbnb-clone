@@ -6,7 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './home';
 import Booking from './booking';
 import Rental from './rental';
-import Property from './accountLayout';
+import UserProperty from './userProperty';
+import AddProperty from './addProperty';
 
 import './account.scss';
 
@@ -31,7 +32,8 @@ function Account(){
               <Routes>
                 <Route index path="/account" element={<Home />} />
                 <Route path="/account/booking" element={<Booking />} />
-
+                <Route path="/account/property" element={<UserProperty />} />
+                <Route path="/account/property/add" element={<AddProperty />} />
               </Routes>
               </AccountLayout>
           </BrowserRouter>

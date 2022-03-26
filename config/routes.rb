@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get '/account/booking/:id'      => 'static_pages#get_booking_by_booking_id'
 
 
-  get '/account/property/'        => 'static_pages#user_property'
+  get '/account/property'         => 'static_pages#user_property'
+  get '/account/property/add'     => 'static_pages#add_user_property' 
+  #a form to let user add new property
 
   get '/account/rental'           => 'static_pages#rental'
   get '/account/rental/:id'       => 'static_pages#get_rental_by_booking_id'

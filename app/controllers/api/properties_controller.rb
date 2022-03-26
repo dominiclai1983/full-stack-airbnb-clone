@@ -26,5 +26,26 @@ module Api
       end
     end
 
+    def create
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        user = session.user
+        @property = user.properties.new(property_params)
+
+        if @property.save 
+          render 'api/properties/index', status: :ok
+        else
+          render json: {properties: []}
+        end
+      else
+        render json: {properties: []}
+      end
+
+    end
+
+    end
+
   end
 end

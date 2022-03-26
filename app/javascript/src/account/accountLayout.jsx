@@ -13,7 +13,7 @@ const AccountLayout = (props) => {
           <Link to='/account/booking'>
             <h6 className="text-secondary">Your Booking</h6>
           </Link>
-            <Link to='/account/user_property'>
+            <Link to='/account/property'>
             <h6 className="text-secondary">Your Properties</h6>
             </Link>
 
