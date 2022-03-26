@@ -36,12 +36,13 @@ Rails.application.routes.draw do
 
     delete '/sessions'             => 'sessions#destroy'
 
-    get '/bookings'                => 'bookings#booking_sort_by_upcoming'
-    get '/bookings/completed'      => 'bookings#booking_sort_by_completed'
+    get  '/bookings'                => 'bookings#booking_sort_by_upcoming'
+    get  '/bookings/completed'      => 'bookings#booking_sort_by_completed'
 
-    get '/authenticated'           => 'sessions#authenticated'
-    get '/properties/:id/bookings' => 'bookings#get_property_bookings'
-    get '/properties'              => 'properties#get_property_by_user_id'      
+    get  '/authenticated'           => 'sessions#authenticated'
+    get  '/properties/:id/bookings' => 'bookings#get_property_bookings'
+    get  '/properties'              => 'properties#get_property_by_user_id'
+    post '/properties'              => 'properties#create'
 
     # stripe webhook
     post '/charges/mark_complete' => 'charges#mark_complete'

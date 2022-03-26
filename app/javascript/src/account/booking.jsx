@@ -6,7 +6,6 @@ import Badge from 'react-bootstrap/Badge';
 import axios from 'axios';
 import BookingList from './component/bookinglist';
 
-
 import './booking.scss'
 
 const Booking = () => {
