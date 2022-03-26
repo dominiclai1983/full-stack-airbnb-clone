@@ -8,6 +8,7 @@ import {
   countryListAlpha2
 } from './component/supportlist';
 import axios from 'axios';
+import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './addProperty.scss'
 
@@ -42,15 +43,18 @@ const AddProperty = () => {
     price_per_night: pricePerNight
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
 
-    try{
-      const result = await axios.post('/api/properties', property);
-      console.log(result);
-      console.log(result.data);
-    }catch(err){
-      console.log(err);
-    }
+    fetch('/api/properties', safeCredentials({
+      method: 'POST',
+      body: JSON.stringify({
+        property: property
+      })
+    }))
+    .then(handleErrors)
+    .then(res => {
+      console.log(res.data);
+    })
 
   }
 

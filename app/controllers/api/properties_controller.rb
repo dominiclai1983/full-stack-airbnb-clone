@@ -35,7 +35,7 @@ module Api
         @property = user.properties.new(property_params)
 
         if @property.save 
-          render 'api/properties/index', status: :ok
+          render 'api/properties/show', status: :ok
         else
           render json: {properties: []}
         end
