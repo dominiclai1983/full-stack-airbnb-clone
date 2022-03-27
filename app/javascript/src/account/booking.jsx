@@ -3,8 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
-import axios from 'axios';
 import BookingList from './component/bookinglist';
+import axios from 'axios';
+
 
 import './booking.scss'
 
@@ -13,14 +14,20 @@ const Booking = () => {
   const [bookings, setBookings] = useState([]);//any array to hold all the booking returns from server
   const [mode, setMode] = useState('upcoming')//with mode: upcoming, completed, cancelled
 
+  useEffect(() => {
+    let isMounted = true;
+    handleUpcoming();
+    return () => {
+      isMounted = false;
+    }
+  }, []);
+
   const handleUpcoming = async () => {
 
-    const result = await axios('/api/bookings',    
+    const result = await axios.get('/api/bookings',    
     );
     setBookings(result.data.bookings);
-  }
-
-  useEffect(handleUpcoming, []);
+}
 
   const handleCompleted = async () => {
 

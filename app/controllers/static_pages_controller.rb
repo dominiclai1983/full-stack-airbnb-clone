@@ -32,4 +32,16 @@ class StaticPagesController < ApplicationController
     render 'add_property'
   end
 
+  def edit_user_property
+    render 'edit_property'
+  end
+
+  def listing_user_property
+    render 'listing_property'
+  end
+
+  def wrong_path
+    render 'wrong_path'
+  end
+
 end

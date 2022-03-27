@@ -1,10 +1,10 @@
 // login.jsx
 import React from 'react';
-import LoginWidget from './loginWidget';
-import Layout from '@src/layout';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Layout from '@src/layout';
+import LoginWidget from './loginWidget';
 import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 import './login.scss';

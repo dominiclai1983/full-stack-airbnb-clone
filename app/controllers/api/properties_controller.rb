@@ -46,6 +46,25 @@ module Api
 
     end
 
+    def edit
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+        if session 
+          @property = Property.find_by(id: params[:id])
+          
+          if @property and @property.update(task_params)
+            render 'api/tasks/show'
+          else
+            render json: { success: false }
+          end
+    
+        else
+          render json: { success: false }
+        end
+
+    end
+
     private
 
       def property_params

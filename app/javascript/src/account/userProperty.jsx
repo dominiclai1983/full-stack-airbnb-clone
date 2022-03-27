@@ -3,22 +3,30 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import PropertyList from './component/propertylist';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from 'axios';
+
+import './userProperty.scss';
 
 const UserProperty = () => {
 
   const [properties, setProperties] = useState([]);
   
   const getAllProperty = async () => {
-    const result = await axios('/api/properties',
-    );
-    setProperties(result.data.properties);
-    console.log(result.data.properties);
+      const result = await axios.get('/api/properties',
+      );
+      setProperties(result.data.properties);
+      console.log(result.data.properties);
+
   }
 
-  useEffect(getAllProperty, []);
+  useEffect(() => {
+    getAllProperty();
+    return () => {
+      setProperties([]);
+    };
+  }, []);
 
   return (
     <>
@@ -33,7 +41,11 @@ const UserProperty = () => {
 
           <Col xs={12}>
             {properties.map(property => {
-              return <PropertyList key={property.id} property={property} />
+              return (
+                <Link to={`/account/property/${property.id}`} key={property.id} >
+                <PropertyList property={property} />
+                </Link>
+              )
             })}
           </Col>
         </Row>

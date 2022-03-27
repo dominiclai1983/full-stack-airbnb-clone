@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
 
 function Layout(props){
 
@@ -14,22 +13,22 @@ function Layout(props){
   const [username, setUsername] = useState("");
 
   useEffect(async () => {
-    const result = await axios('/api/authenticated',
-    );
-    setIsLogin(result.data.authenticated);
-    setUsername(result.data.username);
+
+      const result = await axios('/api/authenticated',
+      );
+      setIsLogin(result.data.authenticated);
+      setUsername(result.data.username);
   }, []);
 
-  const handleLoginOut = () => {
-    fetch('/api/sessions', safeCredentials({
-      method: 'DELETE'
-    }))
-    .then(handleErrors)
-    .then(data => {
-      if(data.success){
-        document.location.href="/";
-      }
-    })
+  const handleLoginOut = async () => {
+
+    try {
+      const result = await axios.delete('/api/sessions', );
+      console.log(result.data);
+    }catch (err){
+      console.error(err);
+    }
+
   }
 
   return (

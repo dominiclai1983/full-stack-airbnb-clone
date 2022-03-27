@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import Layout from '@src/layout';
-import AccountLayout from './accountLayout';
-import axios from 'axios';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './home';
 import Booking from './booking';
 import Rental from './rental';
+import AccountHome from './home';
 import UserProperty from './userProperty';
 import AddProperty from './addProperty';
+import AccountLayout from './accountLayout';
+import ListingProperty from './listingProperty';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from 'axios';
 
 import './account.scss';
 
@@ -30,10 +31,11 @@ function Account(){
           <BrowserRouter>
             <AccountLayout>
               <Routes>
-                <Route index path="/account" element={<Home />} />
+                <Route index path="/account" element={<AccountHome />} />
                 <Route path="/account/booking" element={<Booking />} />
                 <Route path="/account/property" element={<UserProperty />} />
-                <Route path="/account/property/add" element={<AddProperty />} />
+                  <Route path="/account/property/add" element={<AddProperty />} />
+                  <Route path="/account/property/:id" element={<ListingProperty />} />
               </Routes>
               </AccountLayout>
           </BrowserRouter>

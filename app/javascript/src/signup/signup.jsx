@@ -1,18 +1,22 @@
 import React, {useState, useEffect} from 'react'
-import Layout from '@src/layout';
-import SignupWidget from './signupWidget';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Layout from '@src/layout';
+import SignupWidget from './signupWidget';
 import axios from 'axios';
 
 const Signup = () => {
 
   useEffect(async () => {
-    const result = await axios('/api/authenticated',
-    );
-    if(result.data.authenticated){
-      document.location.href="/";
+    try{
+      const result = await axios('/api/authenticated',
+      );
+      if(result.data.authenticated){
+        document.location.href="/";
+      }
+    } catch(err){
+      console.error(err)
     }
   }, []);
 
