@@ -24,13 +24,13 @@ Rails.application.routes.draw do
   get '/account/property'          => 'static_pages#user_property'
   get '/account/property/add'      => 'static_pages#add_user_property' 
   #a form to let user add new property
-  get '/account/property/edit/:id' => 'static_pages#edit_user_property' 
+  get '/account/property/:id/edit' => 'static_pages#edit_user_property' 
   get '/account/property/:id'      => 'static_pages#listing_user_property' 
 
   get '/account/rental'            => 'static_pages#rental'
   get '/account/rental/:id'        => 'static_pages#get_rental_by_booking_id'
 
-  get '*path'                       => 'static_pages#wrong_path'
+  #get '/*path'                     => 'static_pages#wrong_path'
 
   #-----------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     get  '/bookings/completed'      => 'bookings#booking_sort_by_completed'
 
     get  '/authenticated'           => 'sessions#authenticated'
-    get  '/properties/:id/bookings' => 'bookings#get_property_bookings'
+    get  '/properties/:id/bookings' => 'bookings#get_property_upcoming_bookings'
     get  '/properties/'             => 'properties#get_property_by_user_id'
 
     post '/properties'              => 'properties#create'

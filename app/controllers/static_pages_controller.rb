@@ -40,6 +40,10 @@ class StaticPagesController < ApplicationController
     render 'listing_property'
   end
 
+  def rental
+    render 'rental'
+  end
+
   def wrong_path
     render 'wrong_path'
   end

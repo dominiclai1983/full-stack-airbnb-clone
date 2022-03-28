@@ -35,7 +35,7 @@ function Layout(props){
     <>
       <Navbar bg="light" variant="light">
         <Container>
-        <Navbar.Brand href="#home">Airbnb <i className="fab fa-airbnb"></i></Navbar.Brand>
+        <Navbar.Brand href="/">Airbnb <i className="fab fa-airbnb"></i></Navbar.Brand>
           {isLogin? <LoginTrueDropDown username={username} onLogOut={handleLoginOut}/> : <LoginFalseDropDown />}
           {/* this is a very expensive lesson on wrongly passing down!!!*/}
         </Container>

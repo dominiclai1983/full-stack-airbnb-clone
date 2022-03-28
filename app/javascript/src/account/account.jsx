@@ -27,15 +27,15 @@ function Account(){
   return (
     <>
       <Layout>
-
           <BrowserRouter>
             <AccountLayout>
               <Routes>
                 <Route index path="/account" element={<AccountHome />} />
                 <Route path="/account/booking" element={<Booking />} />
                 <Route path="/account/property" element={<UserProperty />} />
-                  <Route path="/account/property/add" element={<AddProperty />} />
-                  <Route path="/account/property/:id" element={<ListingProperty />} />
+                <Route path="/account/property/add" element={<AddProperty />} />
+                <Route path="/account/property/:id" element={<ListingProperty />} />
+                <Route path="/account/rental" element={<Rental />} />
               </Routes>
               </AccountLayout>
           </BrowserRouter>

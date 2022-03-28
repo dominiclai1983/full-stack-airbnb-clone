@@ -16,7 +16,7 @@ module Api
       end
     end
 
-    def get_property_bookings
+    def get_property_upcoming_bookings
       property = Property.find_by(id: params[:id])
       return render json: { error: 'cannot find property' }, status: :not_found if !property
 

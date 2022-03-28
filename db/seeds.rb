@@ -251,3 +251,21 @@ properties = Property.create([
     user: users.last
   }
 ])
+
+bookings = Booking.create([{
+    start_date: DateTime.new(2022,4,2),
+    end_date: DateTime.new(2022,4,4),
+    user_id: 3,
+    property_id: 75
+  },{
+    start_date: DateTime.new(2022,4,5),
+    end_date: DateTime.new(2022,4,7),
+    user_id: 4,
+    property_id: 75
+  },{
+    start_date: DateTime.new(2022,4,8),
+    end_date: DateTime.new(2022,4,10),
+    user_id: 5,
+    property_id: 75
+  }
+])
