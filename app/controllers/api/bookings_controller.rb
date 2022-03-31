@@ -16,12 +16,56 @@ module Api
       end
     end
 
-    def get_property_upcoming_bookings
-      property = Property.find_by(id: params[:id])
-      return render json: { error: 'cannot find property' }, status: :not_found if !property
+    def rental
 
-      @bookings = property.bookings.where("end_date > ? ", Date.today)
-      render 'api/bookings/index'
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+
+        id = session.user.id
+        @bookings = Booking.joins(property: :user).where(user: {id: id})
+        #@bookings = all_bookings.where("end_date > ? ", Date.today)
+        render 'api/bookings/index'
+        
+      else
+        render json: {bookings: []}
+      end
+    
+    end
+
+    def get_property_upcoming_bookings
+
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        property = Property.find_by(id: params[:id])
+        return render json: { error: 'cannot find property' }, status: :not_found if !property
+
+        @bookings = property.bookings.where("end_date > ? ", Date.today)
+        render 'api/bookings/index'
+      else
+        render json: {bookings: []}
+      end
+
+    end
+
+    def get_property_completed_bookings
+
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        property = Property.find_by(id: params[:id])
+        return render json: { error: 'cannot find property' }, status: :not_found if !property
+
+        @bookings = property.bookings.where("end_date < ? ", Date.today)
+        render 'api/bookings/index'
+      else
+        render json: {bookings: []}
+      end
+    
     end
 
     def booking

@@ -50,9 +50,13 @@ Rails.application.routes.draw do
 
     get  '/authenticated'           => 'sessions#authenticated'
     get  '/properties/:id/bookings' => 'bookings#get_property_upcoming_bookings'
+    get  '/properties/:id/completed'=> 'bookings#get_property_completed_bookings'
     get  '/properties/'             => 'properties#get_property_by_user_id'
 
+    get  '/rental'                  => 'bookings#rental'
+
     post '/properties'              => 'properties#create'
+    get  '/properties/:id'          => 'properties#show'
     put  '/properties/:id'          => 'properties#edit'
 
     # stripe webhook

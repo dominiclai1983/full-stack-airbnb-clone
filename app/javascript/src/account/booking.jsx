@@ -6,20 +6,29 @@ import Badge from 'react-bootstrap/Badge';
 import BookingList from './component/bookinglist';
 import axios from 'axios';
 
-
 import './booking.scss'
 
 const Booking = () => {
 
   const [bookings, setBookings] = useState([]);//any array to hold all the booking returns from server
   const [mode, setMode] = useState('upcoming')//with mode: upcoming, completed, cancelled
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
-    handleUpcoming();
-    return () => {
-      isMounted = false;
-    }
+    
+    const fetchData = async () => {
+      setIsError(false);
+      try{
+        const result = await axios.get('/api/bookings',    
+        );
+        setBookings(result.data.bookings);
+      }catch(error){
+        setIsError(true)
+      }
+    };
+
+    fetchData();
+
   }, []);
 
   const handleUpcoming = async () => {
@@ -31,12 +40,8 @@ const Booking = () => {
 
   const handleCompleted = async () => {
 
-   try{
      const result = await axios.get('/api/bookings/completed',);
      setBookings(result.data.bookings);
-   }catch(err){
-     console.log(err);
-   }
 
   };
 

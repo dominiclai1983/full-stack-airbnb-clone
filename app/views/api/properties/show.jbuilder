@@ -12,8 +12,8 @@ json.property do
   json.baths @property.baths
   json.image_url @property.image_url
 
-  json.user do
-    json.id @property.user.id
-    json.username @property.user.username
-  end
+  #json.user do
+  #  json.id @property.user.id
+  #  json.username @property.user.username
+  #end
 end

@@ -12,20 +12,17 @@ import './userProperty.scss';
 const UserProperty = () => {
 
   const [properties, setProperties] = useState([]);
-  
-  const getAllProperty = async () => {
+
+  useEffect(() => {
+
+    const fetchData = async () => {
       const result = await axios.get('/api/properties',
       );
       setProperties(result.data.properties);
       console.log(result.data.properties);
-
-  }
-
-  useEffect(() => {
-    getAllProperty();
-    return () => {
-      setProperties([]);
     };
+    fetchData();
+    
   }, []);
 
   return (

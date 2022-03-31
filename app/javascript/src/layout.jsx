@@ -12,12 +12,17 @@ function Layout(props){
   const [isLogin, setIsLogin] = useState(false);
   const [username, setUsername] = useState("");
 
-  useEffect(async () => {
+  useEffect(() => {
 
+    const fetchData = async () => {
       const result = await axios('/api/authenticated',
       );
       setIsLogin(result.data.authenticated);
       setUsername(result.data.username);
+    };
+
+    fetchData();
+
   }, []);
 
   const handleLoginOut = async () => {

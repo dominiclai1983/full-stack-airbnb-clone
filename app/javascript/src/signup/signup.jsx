@@ -8,16 +8,15 @@ import axios from 'axios';
 
 const Signup = () => {
 
-  useEffect(async () => {
-    try{
-      const result = await axios('/api/authenticated',
-      );
-      if(result.data.authenticated){
-        document.location.href="/";
-      }
-    } catch(err){
-      console.error(err)
+  useEffect(() => {
+   const fetchData = async () => {
+    const result = await axios('/api/authenticated',
+    );
+    if(result.data.authenticated){
+      document.location.href="/";
     }
+   };
+   fetchData();
   }, []);
 
   return (
