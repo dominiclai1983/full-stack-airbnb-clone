@@ -14,8 +14,13 @@ const RentalList = (props) => {
 
       <Col sx={12} lg={9} className="mt-1">
       <h5>{rental.title}</h5>
-      <p>Rental ID: {rental.id}</p>
-      {/* <p className={(mode === 'upcoming')? null: "d-none"}>Check-In Date: {booking.start_date}</p> */}
+      <ul>
+        <li>Rental ID: {rental.id}</li>
+        <li>Start Date: {rental.start_date}</li>
+        <li>End Date: {rental.end_date}</li>
+        <li>Guess Name: {rental.username}</li>
+      </ul>
+      
       </Col>
     
     </div>

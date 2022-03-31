@@ -31,9 +31,9 @@ const UserProperty = () => {
         <Row>
           <Col xs={12} className="d-flex my-1">
             <h2 className="flex-grow-1">Your Properties</h2>
-            <a href="/account/property/add" className="text-right">
+            <Link to='/account/property/add'>
               <Button variant="danger">Add Property</Button>
-            </a>
+            </Link>
           </Col>
 
           <Col xs={12}>

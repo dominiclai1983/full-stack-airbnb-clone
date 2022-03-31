@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import ListingBooking from './component/listingbookinglist'
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-
+import { Link } from "react-router-dom";
 
 const ListingProperty = () => {
 
@@ -57,6 +57,7 @@ const ListingProperty = () => {
     }
   }
 
+
   return (
     <>
       <Container>
@@ -67,8 +68,10 @@ const ListingProperty = () => {
             </Col>
             <Col sx={12} lg={8}>
             <h5>{property.title}</h5>
-            <p>{property.id}</p>
-            <Button variant="danger">Change</Button> 
+            <p>Property ID: {property.id}</p>
+            <Link to={`/account/property/${params.id}/edit`}>
+            <Button variant="danger">Change</Button>
+            </Link>
             </Col>
           </div>
         </Row>
@@ -90,8 +93,8 @@ const ListingProperty = () => {
         </Row>
         <Row>
           <Col sx={12}>
-            {bookings.map(booking => {
-              return ( <ListingBooking booking={booking} />
+            {bookings.map((booking, key) => {
+              return ( <ListingBooking booking={booking} key={key}/>
               )
             })}
           </Col>

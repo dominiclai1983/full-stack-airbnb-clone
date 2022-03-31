@@ -9,7 +9,6 @@ import {
 } from './component/supportlist';
 import axios from 'axios';
 
-
 import './addProperty.scss'
 
 const AddProperty = () => {
@@ -19,8 +18,8 @@ const AddProperty = () => {
   //
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [city, setCity] = useState("San Francisco");
-  const [country, setCountry] = useState("United States of America");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
   const [propertyType, setPropertyType] = useState('Studio');//:property_type-
   const [maxGuests, setMaxGuests] = useState(0);
   const [bedrooms, setBedRooms] = useState(0);
@@ -60,7 +59,7 @@ const AddProperty = () => {
       <Form>
         {/* -- :title -- */}
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label><i class="fas fa-house-user"></i> The Title Of Your Property *
+          <Form.Label><i className="fas fa-house-user"></i> The Title Of Your Property *
           </Form.Label>
           <Form.Control type="text" placeholder="My Beautiful Home" value={title} onChange={(event) => {
             event.preventDefault();
@@ -70,7 +69,7 @@ const AddProperty = () => {
 
         {/* -- :price_per_night -- */}
         <Form.Group controlId="exampleForm.ControlInput2">
-          <Form.Label><i class="fas fa-house-user"></i> Price Per Night 
+          <Form.Label><i className="fas fa-house-user"></i> Price Per Night 
           </Form.Label>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
@@ -89,7 +88,7 @@ const AddProperty = () => {
 
         {/* -- :country -- */}
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label><i class="fas fa-home"></i> Property Country 
+          <Form.Label><i className="fas fa-home"></i> Property Country 
           </Form.Label>
           <Form.Control as="select" value={country} onChange={(event) => {
             console.log(event.target.value);
@@ -103,7 +102,7 @@ const AddProperty = () => {
 
         {/* -- :city -- */}
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label><i class="fas fa-house-user"></i> Property City 
+          <Form.Label><i className="fas fa-house-user"></i> Property City 
           </Form.Label>
           <Form.Control type="text" placeholder="" value={city} onChange={(event) => {
             event.preventDefault();
@@ -113,7 +112,7 @@ const AddProperty = () => {
 
         {/* -- :property_type -- */}
         <Form.Group controlId="exampleForm.ControlSelect2">
-          <Form.Label><i class="fas fa-home"></i> Property Type 
+          <Form.Label><i className="fas fa-home"></i> Property Type 
           </Form.Label>
           <Form.Control as="select" value={propertyType} onChange={(event) => {
             console.log(event.target.value);
@@ -127,7 +126,7 @@ const AddProperty = () => {
         
         {/* -- :max_guests -- */}
         <Form.Group controlId="exampleForm.ControlSelect2">
-          <Form.Label><i class="fas fa-user"></i> Number of Guests Allowed 
+          <Form.Label><i className="fas fa-user"></i> Number of Guests Allowed 
           </Form.Label>
           <Form.Control as="select" value={maxGuests} onChange={(event) => {
             console.log(event.target.value);
@@ -141,7 +140,7 @@ const AddProperty = () => {
 
         {/* -- :bedrooms -- */}
         <Form.Group controlId="exampleForm.ControlSelect3">
-          <Form.Label><i class="fas fa-door-open"></i> Number of Bedrooms 
+          <Form.Label><i className="fas fa-door-open"></i> Number of Bedrooms 
           </Form.Label>
           <Form.Control as="select" value={bedrooms} onChange={(event) => {
             console.log(event.target.value);
@@ -155,7 +154,7 @@ const AddProperty = () => {
 
         {/* -- :beds -- */}
         <Form.Group controlId="exampleForm.ControlSelect3">
-          <Form.Label><i class="fas fa-bed"></i> Number of Beds 
+          <Form.Label><i className="fas fa-bed"></i> Number of Beds 
           </Form.Label>
           <Form.Control as="select" value={beds} onChange={(event) => {
             console.log(event.target.value);
@@ -169,7 +168,7 @@ const AddProperty = () => {
 
         {/* -- :baths -- */}
         <Form.Group controlId="exampleForm.ControlSelect3">
-          <Form.Label><i class="fas fa-bath"></i> Number of Baths 
+          <Form.Label><i className="fas fa-bath"></i> Number of Baths 
           </Form.Label>
           <Form.Control as="select" value={baths} onChange={(event) => {
             console.log(event.target.value);
@@ -182,7 +181,7 @@ const AddProperty = () => {
         </Form.Group>        
 
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label><i class="far fa-clipboard"></i> Description 
+          <Form.Label><i className="far fa-clipboard"></i> Description 
           </Form.Label>
           <Form.Control as="textarea" rows={3} value={description} onChange={event => {
             event.preventDefault();

@@ -12,6 +12,7 @@ const Rental = () => {
       const result = await axios.get('/api/rental',
       );
       setRentals(result.data.bookings);
+      console.log(result.data.bookings);
     };
 
     fetchData();
@@ -20,11 +21,9 @@ const Rental = () => {
   return (
     <>
       <h2>This is Rental</h2>
-      {/*
       {rentals.map((rental, key) => {
         return <RentalList key={key} rental={rental} />
       })}
-      */}
     </>
   )
 }
