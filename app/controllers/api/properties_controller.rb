@@ -54,8 +54,8 @@ module Api
         if session 
           @property = Property.find_by(id: params[:id])
           
-          if @property and @property.update(task_params)
-            render 'api/tasks/show'
+          if @property and @property.update(property_params)
+            render 'api/properties/show'
           else
             render json: { success: false }
           end

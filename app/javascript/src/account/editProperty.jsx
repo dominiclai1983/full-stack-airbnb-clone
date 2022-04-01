@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import {
   propertyTypeArray, 
   oneToTwentyRangeArray,
@@ -29,6 +30,7 @@ const EditProperty = () => {
   const [beds, setBeds] = useState(0);
   const [baths, setBaths] = useState(0);
   const [pricePerNight, setPricePerNight] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
 
   const [countrySearch, setCountrySearch] = useState("");
 
@@ -37,9 +39,22 @@ const EditProperty = () => {
       const result = await axios.get(`/api/properties/${params.id}`, 
       );
       if(result.data){
-        console.log(result.data.bookings)
+        let data = {...result.data.property};
+        console.log(data)
+        setImageUrl(data.image_url);
+        setTitle(data.title);
+        setDescription(data.description);
+        setCity(data.city);
+        setCountry(data.country.toUpperCase());
+        setPropertyType(data.property_type);
+        setMaxGuests(data.max_guests);
+        setBedRooms(data.bedrooms);
+        setBeds(data.beds);
+        setBaths(data.baths);
+        setPricePerNight(data.price_per_night);
       }
-    }
+    };
+    fetchData();
   }, [])
 
   const property = {
@@ -58,17 +73,25 @@ const EditProperty = () => {
   const handleSubmit = async () => {
 
     try{
-      const result = await axios.post(`/api/properties/${params.id}`, property);
-      console.log(result.data);
+      const result = await axios.put(`/api/properties/${params.id}`, property);
+      if(result.data){
+        document.location.href=`/property/${params.id}`;
+      };
     } catch (err){
       console.error(err);
     }
 
   }
 
+  const checkCountry = (obj, countryCode) => {
+    let country = Object.entries(obj).filter(([a,b]) => a === countryCode).flat();
+    return country[1];
+  }
+
   return (
     <>
       <h2>Edit Your Property</h2>
+      <Image src={imageUrl} fluid /> 
       <Form>
         {/* -- :title -- */}
         <Form.Group controlId="exampleForm.ControlInput1">
