@@ -16,22 +16,33 @@ module Api
       end
     end
 
-    def rental
+    def rental_sort_by_upcoming
 
       token = cookies.signed[:airbnb_session_token]
       session = Session.find_by(token: token)
 
       if session
-
         id = session.user.id
-        @bookings = Booking.joins(property: :user).where(user: {id: id})
+        @bookings = Booking.joins(property: :user).where(user: {id: id}).where("start_date > ?", Date.today)
         #@bookings = all_bookings.where("end_date > ? ", Date.today)
         render 'api/bookings/index'
-        
       else
         render json: {bookings: []}
       end
-    
+    end
+
+    def rental_sort_by_completed
+
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        id = session.user.id
+        @bookings = Booking.joins(property: :user).where(user: {id: id}).where("start_date < ?", Date.today)
+        render 'api/bookings/index'
+      else
+        render json: {bookings: []}
+      end
     end
 
     def get_property_upcoming_bookings

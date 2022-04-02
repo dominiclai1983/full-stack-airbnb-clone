@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Layout from '@src/layout';
 import Booking from './booking';
 import Rental from './rental';
-import AccountHome from './home';
+import AccountHome from './accountHome';
 import UserProperty from './userProperty';
 import AddProperty from './addProperty';
 import AccountLayout from './accountLayout';

@@ -12,14 +12,21 @@ import './userProperty.scss';
 const UserProperty = () => {
 
   const [properties, setProperties] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
 
     const fetchData = async () => {
-      const result = await axios.get('/api/properties',
-      );
-      setProperties(result.data.properties);
-      console.log(result.data.properties);
+
+      setIsError(false);
+      try{
+        const result = await axios.get('/api/properties',
+        );
+        setProperties(result.data.properties);
+        console.log(result.data.properties);
+      }catch(error){
+        setIsError(true);
+      }
     };
     fetchData();
     

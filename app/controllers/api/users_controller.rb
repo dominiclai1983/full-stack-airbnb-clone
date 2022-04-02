@@ -10,6 +10,20 @@ module Api
       end
     end
 
+    def show
+
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session
+        @user = session.user
+        render 'api/users/create'
+      else
+        render json: { success: false }, status: :bad_request
+      end
+
+    end
+
     private
 
     def user_params

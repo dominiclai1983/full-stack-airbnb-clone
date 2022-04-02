@@ -4,7 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import ListingBooking from './component/listingbookinglist'
+import {countryListAlpha2} from './component/supportlist';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { Link } from "react-router-dom";
@@ -15,77 +17,97 @@ const ListingProperty = () => {
   const [bookings, setBookings] = useState([]);
   const [property, setProperty] = useState({});
   const [mode, setMode] = useState('upcoming');
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-
-    const fetchData = async () => {
-      const result = await axios.get(`/api/properties/${params.id}/bookings`, );
-      if(result.data){
-        console.log(result.data.bookings);
-        setBookings(result.data.bookings);
-      }
-    }
-
+    const fetchData = () => {
+      getUpcomingBooking();
+    };
     fetchData();
   }, [])
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`/api/properties/${params.id}`, );
-      if(result.data){
-        console.log(result.data);
-        setProperty(result.data.property);
+      setIsError(false);
+      try{
+        const result = await axios.get(`/api/properties/${params.id}`, );
+        if(result.data){
+          console.log(result.data);
+          setProperty(result.data.property);
+        }
+      }catch(error){
+        setIsError(true);
       }
-    }
+    } 
     fetchData();
-  },[])
+  },[]);
 
   const getUpcomingBooking = async() => {
-    const result = await axios.get(`/api/properties/${params.id}/bookings`, );
-    if(result.data){
-      console.log(result.data.bookings);
-      setBookings(result.data.bookings);
+    setIsError(false);
+    try{
+      const result = await axios.get(`/api/properties/${params.id}/bookings`, );
+      if(result.data){
+        console.log(result.data.bookings);
+        setBookings(result.data.bookings);
+      }
+    }catch(error){
+      setIsError(true);
     }
   }
 
   const getCompletedBooking = async () => {
-    const result = await axios.get(`/api/properties/${params.id}/completed`, 
-    );
-    if(result.data){
-      console.log(result.data.bookings);
-      setBookings(result.data.bookings);
+    setIsError(false);
+    try{
+      const result = await axios.get(`/api/properties/${params.id}/completed`, 
+      );
+      if(result.data){
+        console.log(result.data.bookings);
+        setBookings(result.data.bookings);
+      }
+    }catch(error){
+      setIsError(true); 
     }
   }
-
+  
+  const findCountry = (obj, countryCode) => {
+    let result = Object.entries(obj).filter(([key,value]) => key === countryCode).flat();
+    return result[1];
+  }
 
   return (
     <>
       <Container>
         <Row>
-          <div className="d-flex my-2 py-2">
+          <div className="d-flex my-1">
             <Col lg={4} className="mr-1 ml-3 d-none d-lg-block">
-              <img src={property.image_url} />
+              <Image src={property.image_url} rounded style={{width: "175px", height: "131px"}}/>
             </Col>
             <Col sx={12} lg={8}>
-            <h5>{property.title}</h5>
-            <p>Property ID: {property.id}</p>
-            <Link to={`/account/property/${params.id}/edit`}>
-            <Button variant="danger">Change</Button>
-            </Link>
+            <div className="d-inline-flex align-items-center">
+              <h5 className="mr-auto">{property.title}</h5>
+              <Link to={`/account/property/${params.id}/edit`}>
+                <Button variant="danger">Change</Button>
+              </Link>
+            </div>
+            <ul>
+              <li>Property ID: {property.id}</li>
+              <li>Price: {property.price_per_night}</li>
+              <li>Country: {findCountry(countryListAlpha2,property.country)}</li>
+              <li>City: {property.city}</li>
+            </ul>
+
             </Col>
           </div>
         </Row>
-
-        <hr/>
-
-        <Row>
+        
+        <Row className={bookings.length? null: "d-none"}>
           <Col sx={12}>
-            <Badge variant={(mode === 'upcoming')? "primary": "secondary"} onClick={() => {
+            <Badge variant={(mode === 'upcoming')? "warning": "secondary"} onClick={() => {
               getUpcomingBooking();
               setMode('upcoming');
             }}>Upcoming</Badge>{' '}
 
-            <Badge variant={(mode === 'completed')? "primary": "secondary"} onClick={() => {
+            <Badge variant={(mode === 'completed')? "warning": "secondary"} onClick={() => {
               getCompletedBooking();
               setMode('completed');
             }}>Completed</Badge>
@@ -94,7 +116,7 @@ const ListingProperty = () => {
         <Row>
           <Col sx={12}>
             {bookings.map((booking, key) => {
-              return ( <ListingBooking booking={booking} key={key}/>
+              return ( <ListingBooking booking={booking} key={key} />
               )
             })}
           </Col>

@@ -23,12 +23,10 @@ const Booking = () => {
         );
         setBookings(result.data.bookings);
       }catch(error){
-        setIsError(true)
+        setIsError(true);
       }
     };
-
     fetchData();
-
   }, []);
 
   const handleUpcoming = async () => {
@@ -50,21 +48,17 @@ const Booking = () => {
       <Container>
         <Row>
           <h2>Your Bookings</h2>
-          <Col xs={12} className="ml-4 my-3">
-            <Badge pill variant={(mode === 'upcoming')? "primary": "secondary"} onClick={() => {
+          <Col xs={12} className="mb-1 mt-2">
+            <Badge pill variant={(mode === 'upcoming')? "warning": "secondary"} onClick={() => {
               handleUpcoming();
               setMode('upcoming')}} >
             Upcoming
             </Badge>{' '}
 
-            <Badge pill variant={(mode === 'completed')? "primary": "secondary"} onClick={() => {
+            <Badge pill variant={(mode === 'completed')? "warning": "secondary"} onClick={() => {
               handleCompleted();
               setMode('completed')}} >
             Completed
-            </Badge>{' '}
-
-            <Badge pill variant={(mode === 'cancelled')? "primary": "secondary"} onClick={() => setMode('cancelled')}>
-            Cancelled
             </Badge>{' '}
           </Col>
 

@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
     resources :charges, only: [:create]
 
-    delete '/sessions'             => 'sessions#destroy'
+    delete '/sessions'              => 'sessions#destroy'
 
     get  '/bookings'                => 'bookings#booking_sort_by_upcoming'
     get  '/bookings/completed'      => 'bookings#booking_sort_by_completed'
@@ -53,11 +53,14 @@ Rails.application.routes.draw do
     get  '/properties/:id/completed'=> 'bookings#get_property_completed_bookings'
     get  '/properties/'             => 'properties#get_property_by_user_id'
 
-    get  '/rental'                  => 'bookings#rental'
+    get  '/rental'                  => 'bookings#rental_sort_by_upcoming'
+    get  '/rental/completed'        => 'bookings#rental_sort_by_completed'
 
     post '/properties'              => 'properties#create'
     get  '/properties/:id'          => 'properties#show'
     put  '/properties/:id'          => 'properties#edit'
+
+    get  '/user'                    => 'users#show'
 
     # stripe webhook
     post '/charges/mark_complete' => 'charges#mark_complete'
