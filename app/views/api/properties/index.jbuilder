@@ -11,11 +11,5 @@ json.properties do
     json.price_per_night property.price_per_night
     json.image_url property.image_url
 
-    if property.image.attached?
-      json.image url_fo(tweet.image)
-    else
-      json.image nil
-    end
-    
   end
 end
