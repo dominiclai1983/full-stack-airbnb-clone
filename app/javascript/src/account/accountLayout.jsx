@@ -2,7 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {Link, NavLink, Outlet} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 
 const AccountLayout = () => {
   return (
@@ -10,30 +10,29 @@ const AccountLayout = () => {
       <Container>
         <Row>
           <Col xs={2}>
-            <NavLink to='/account/booking'>
+            <NavLink to='booking'>
               {({isActive}) => (
                 <h6 className={isActive ? "text-warning" : "text-secondary"}>Your Booking</h6>
               )}
-              {/* <h6 className={isActive ? "text-warning" : "text-secondary"}>Your Booking</h6> */}
             </NavLink>
 
-            <NavLink to='/account/property'>
+            <NavLink to='property'>
               {({isActive}) => (
                 <h6 className={isActive ? "text-warning" : "text-secondary"}>Your Properties</h6>
               )}
-            {/* <h6 className="text-secondary">Your Properties</h6> */}
             </NavLink>
 
-            <NavLink to='/account/rental'>
+            <NavLink to='rental'>
               {({isActive}) => (
                 <h6 className={isActive ? "text-warning" : "text-secondary"}>Your Rental</h6>
               )}
-            {/* <h6 className="text-secondary">Your Rental</h6> */}
             </NavLink>
 
-            <Link to='/account'>
-            <h6 className="text-secondary">Your Account</h6>
-            </Link>
+            <NavLink to='profiles'>
+              {({isActive}) => (
+                <h6 className={isActive ? "text-warning" : "text-secondary"}>Your Account</h6>
+              )}
+            </NavLink>
           </Col>
           <Col xs={10}>
             <Outlet />

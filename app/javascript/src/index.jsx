@@ -47,6 +47,7 @@ class Index extends React.Component {
     }
     this.setState({ loading: true });
     /*fetch(`/api/properties?page=${this.state.next_page}`)*/
+    /* testing out how to use ENV varaiable only */
     const LISTING_URL = process.env.LISTING_URL;
 
     fetch(LISTING_URL+this.state.next_page)

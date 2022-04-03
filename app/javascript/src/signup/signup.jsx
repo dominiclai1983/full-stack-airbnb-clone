@@ -20,7 +20,7 @@ const Signup = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Container>
         <Row>
           <Col xs={12} md={9} lg={6} className="mx-auto my-4">
@@ -30,7 +30,7 @@ const Signup = () => {
           </Col>
         </Row>
       </Container>
-    </Layout>
+    </>
   )
 }
 

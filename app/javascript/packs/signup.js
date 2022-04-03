@@ -1,2 +1,2 @@
 // singup.js
-import '@src/signup';
+import '@src/home';

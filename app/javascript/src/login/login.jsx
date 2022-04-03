@@ -29,7 +29,7 @@ class Login extends React.Component {
     const { authenticated, show_login } = this.state;
 
     return (
-      <Layout>
+      <>
         <Container>
           <Row>
             <Col xs={12} md={9} lg={6} className="mx-auto my-4">
@@ -39,7 +39,7 @@ class Login extends React.Component {
             </Col>
           </Row>
         </Container>
-      </Layout>
+      </>
     )
   }
 }
