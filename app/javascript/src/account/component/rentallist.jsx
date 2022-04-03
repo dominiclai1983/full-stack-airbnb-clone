@@ -13,7 +13,7 @@ const RentalList = (props) => {
         {rental.image_url? <img src={rental.image_url} alt={rental.title} /> : <img src={rental.image} alt={rental.title} /> }
       </Col>
 
-      <Col sx={12} lg={9} className="mt-1">
+      <Col xs={12} lg={9} className="mt-1">
       <h5 className="text-muted">{rental.title}</h5>
       <ul>
         <li>Rental ID: {rental.id}</li>

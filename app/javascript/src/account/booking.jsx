@@ -31,16 +31,25 @@ const Booking = () => {
 
   const handleUpcoming = async () => {
 
-    const result = await axios.get('/api/bookings',    
-    );
-    setBookings(result.data.bookings);
+    setIsError(false);
+    try{
+      const result = await axios.get('/api/bookings',    
+      );
+      setBookings(result.data.bookings);
+    }catch(error){
+      setIsError(true);
+    }
 }
 
   const handleCompleted = async () => {
 
-     const result = await axios.get('/api/bookings/completed',);
-     setBookings(result.data.bookings);
-
+    setIsError(false);
+    try{
+      const result = await axios.get('/api/bookings/completed',);
+      setBookings(result.data.bookings);
+    }catch(error){
+      setIsError(true);
+    }
   };
 
   return (

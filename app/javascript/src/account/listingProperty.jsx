@@ -68,25 +68,31 @@ const ListingProperty = () => {
       setIsError(true); 
     }
   }
-  
+
   const findCountry = (obj, countryCode) => {
     let result = Object.entries(obj).filter(([key,value]) => key === countryCode).flat();
     return result[1];
   }
+  
+  const NoBooking = () => {
+    return (
+      <h5 className="text-warning">More Booking Is Coming!</h5>
+    )
+  }
 
   return (
     <>
-      <Container>
+      <Container fluid>
         <Row>
           <div className="d-flex my-1">
-            <Col lg={4} className="mr-1 ml-3 d-none d-lg-block">
+            <Col lg={5} className="mr-1 ml-3 d-none d-lg-block">
               {property.image_url? 
                 <Image src={property.image_url} rounded style={{width: "175px", height: "131px"}}/> :
                 <Image src={property.image} rounded style={{width: "175px", height: "131px"}}/> 
               }
             </Col>
-            <Col sx={12} lg={8}>
-            <div className="d-inline-flex align-items-center">
+            <Col xs={12} lg={7}>
+            <div className="d-flex align-items-center">
               <h5 className="mr-auto">{property.title}</h5>
               <Link to={`/account/property/${params.id}/edit`}>
                 <Button variant="danger">Change</Button>
@@ -103,8 +109,8 @@ const ListingProperty = () => {
           </div>
         </Row>
         
-        <Row className={bookings.length? null: "d-none"}>
-          <Col sx={12}>
+        <Row className={bookings.length? null : "d-none"}>
+          <Col xs={12}>
             <Badge variant={(mode === 'upcoming')? "warning": "secondary"} onClick={() => {
               getUpcomingBooking();
               setMode('upcoming');
@@ -117,11 +123,12 @@ const ListingProperty = () => {
           </Col>
         </Row>
         <Row>
-          <Col sx={12}>
+          <Col xs={12}>
             {bookings.map((booking, key) => {
               return ( <ListingBooking booking={booking} key={key} />
               )
             })}
+            {bookings.length === 0? <NoBooking /> : null}
           </Col>
         </Row>
       </Container>

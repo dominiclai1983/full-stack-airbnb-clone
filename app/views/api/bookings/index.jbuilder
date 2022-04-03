@@ -7,5 +7,6 @@ json.bookings do
     json.username booking.user.username
     json.start_date booking.start_date
     json.end_date booking.end_date
+    json.days (booking.end_date - booking.start_date).to_i
   end
 end

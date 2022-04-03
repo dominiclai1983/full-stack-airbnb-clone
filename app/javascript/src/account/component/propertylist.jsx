@@ -11,7 +11,7 @@ const PropertyList = (props) => {
       {property.image_url? <img src={property.image_url} alt={property.title} /> : <img src={property.image} alt={property.title} /> }
       </Col>
 
-      <Col sx={12} lg={9} className="mt-1">
+      <Col xs={12} lg={9} className="mt-1">
       <h5>{property.title}</h5>
       <p>Property ID: {property.id}</p>
       </Col>

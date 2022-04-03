@@ -29,25 +29,9 @@ const AddProperty = () => {
   const [beds, setBeds] = useState(0);
   const [baths, setBaths] = useState(0);
   const [pricePerNight, setPricePerNight] = useState(0);
+
   const [image, setImage] = useState(null);
-
   const [previewImage, setPreviewImage] = useState(null);
-
-  /*
-  const property = {
-    "title": title,
-    "description": description,
-    "city": city,
-    "country": country,
-    "property_type": propertyType,
-    "max_guests": maxGuests,
-    "bedrooms": bedrooms,
-    "beds": beds,
-    "baths": baths,
-    "price_per_night": pricePerNight,
-    "image": image
-  }
-  */
 
   const handleChange = (event) => {
     setPreviewImage(window.URL.createObjectURL(event.target.files[0]));
@@ -75,7 +59,7 @@ const AddProperty = () => {
     axios.post('/api/properties', formData)
       .then(res => {
         console.log(res);
-        console.log(res.data)
+        console.log(res.data);
       })
   }
 
@@ -253,10 +237,10 @@ const AddProperty = () => {
         </Tab>
       </Tabs>
       <div>
-      <Form.Group className="d-flex justify-content-between">
-        <Link to='/account/property'>      
-          <Button variant="secondary" onClick={handleSubmit}>Cancel</Button> 
-        </Link>
+        <Form.Group className="d-flex justify-content-between">
+          <Link to='/account/property'>      
+            <Button variant="secondary" onClick={handleSubmit}>Cancel</Button> 
+          </Link>
           <Button variant="danger" onClick={handleSubmit}>Add Property</Button> 
         </Form.Group>
       </div>
