@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   get '/account/*path'             => 'static_pages#wrong_path'
 
+
   #-----------------------------------------------------------------------------
 
   #remember the following is backend
@@ -64,7 +65,8 @@ Rails.application.routes.draw do
     get  '/user'                    => 'users#show'
 
     # stripe webhook
-    post '/charges/mark_complete' => 'charges#mark_complete'
+    post '/charges/mark_complete'   => 'charges#mark_complete'
+
 
   end
 
