@@ -1,1 +1,1 @@
-import '@src/account'
+import '@src/home'

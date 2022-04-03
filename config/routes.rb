@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   get '/signup'                    => 'static_pages#signup'
 
   #Account API
-  get '/account'                   => 'static_pages#account'
+  get '/account/'                  => 'static_pages#account'
+  get '/account/profiles'          => 'static_pages#account_home'
 
   get '/account/booking'           => 'static_pages#booking'
   get '/account/booking/:id'       => 'static_pages#get_booking_by_booking_id'
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
   get '/account/rental'            => 'static_pages#rental'
   get '/account/rental/:id'        => 'static_pages#get_rental_by_booking_id'
 
-  #get '/*path'                     => 'static_pages#wrong_path'
+  get '/account/*path'             => 'static_pages#wrong_path'
 
   #-----------------------------------------------------------------------------
 

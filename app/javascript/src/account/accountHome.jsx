@@ -17,7 +17,7 @@ const AccountHome = () => {
     const fetchDate = async() => {
       setIsError(false);
       try{
-        const result = await axios.get('api/user', 
+        const result = await axios.get('/api/user', 
         );
         let data = {...result.data.user};
         setID(data.user_id);

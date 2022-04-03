@@ -20,6 +20,10 @@ class StaticPagesController < ApplicationController
     render 'account'
   end
 
+  def account_home
+    render 'account_home'
+  end
+
   def user_property
     render 'user_property'
   end

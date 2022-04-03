@@ -2,9 +2,9 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, Outlet} from "react-router-dom";
 
-const AccountLayout = (props) => {
+const AccountLayout = () => {
   return (
     <>
       <Container>
@@ -36,7 +36,7 @@ const AccountLayout = (props) => {
             </Link>
           </Col>
           <Col xs={10}>
-            {props.children} 
+            <Outlet />
           </Col>
         </Row>
       </Container>
