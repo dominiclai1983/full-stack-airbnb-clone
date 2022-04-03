@@ -80,7 +80,10 @@ const ListingProperty = () => {
         <Row>
           <div className="d-flex my-1">
             <Col lg={4} className="mr-1 ml-3 d-none d-lg-block">
-              <Image src={property.image_url} rounded style={{width: "175px", height: "131px"}}/>
+              {property.image_url? 
+                <Image src={property.image_url} rounded style={{width: "175px", height: "131px"}}/> :
+                <Image src={property.image} rounded style={{width: "175px", height: "131px"}}/> 
+              }
             </Col>
             <Col sx={12} lg={8}>
             <div className="d-inline-flex align-items-center">

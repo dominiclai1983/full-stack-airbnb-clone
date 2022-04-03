@@ -33,6 +33,7 @@ const AddProperty = () => {
 
   const [previewImage, setPreviewImage] = useState(null);
 
+  /*
   const property = {
     "title": title,
     "description": description,
@@ -46,29 +47,36 @@ const AddProperty = () => {
     "price_per_night": pricePerNight,
     "image": image
   }
+  */
 
   const handleChange = (event) => {
     setPreviewImage(window.URL.createObjectURL(event.target.files[0]));
     setImage(event.target.files[0]);
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
 
     event.preventDefault();
 
     const formData = new FormData();
 
-    for (const key in property){
-      formData.append(key, property[key])
-    }
+    formData.append('property[title]',title);
+    formData.append('property[description]',description);
+    formData.append('property[city]',city);
+    formData.append('property[country]',country);
+    formData.append('property[property_type]',propertyType);
+    formData.append('property[max_guests]',maxGuests);
+    formData.append('property[bedrooms]',bedrooms);
+    formData.append('property[beds]',beds);
+    formData.append('property[baths]',baths);
+    formData.append('property[price_per_night]',pricePerNight);
+    formData.append('property[image]',image);
 
-    try{
-      const result = await axios.post('/api/properties', formData);
-      console.log(result.data);
-    } catch (err){
-      console.error(err);
-    }
-
+    axios.post('/api/properties', formData)
+      .then(res => {
+        console.log(res);
+        console.log(res.data)
+      })
   }
 
   return (

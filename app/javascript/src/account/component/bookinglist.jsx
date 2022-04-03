@@ -17,7 +17,8 @@ const BookingList = (props) => {
   return (
 
     <div className={checkBorder(index)}>
-      <Col lg={3} className="mr-1 ml-3 d-none d-lg-block"><img src={booking.image_url} alt={booking.title} />
+      <Col lg={3} className="mr-1 ml-3 d-none d-lg-block">
+        <img src={booking.image_url} alt={booking.title} />
       </Col>
 
       <Col sx={12} lg={9} className="mt-1">

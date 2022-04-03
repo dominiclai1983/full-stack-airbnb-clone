@@ -9,7 +9,8 @@ const RentalList = (props) => {
   return (
 
     <div className="d-flex border mt-2 py-1">
-      <Col lg={3} className="mr-1 ml-3 d-none d-lg-block"><img src={rental.image_url} alt={rental.title} />
+      <Col lg={3} className="mr-1 ml-3 d-none d-lg-block">
+        {rental.image_url? <img src={rental.image_url} alt={rental.title} /> : <img src={rental.image} alt={rental.title} /> }
       </Col>
 
       <Col sx={12} lg={9} className="mt-1">

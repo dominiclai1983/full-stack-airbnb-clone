@@ -7,7 +7,8 @@ const PropertyList = (props) => {
 
   return (
     <div className="d-flex my-2 py-2 border rounded">
-      <Col lg={3} className="mr-1 ml-3 d-none d-lg-block"><img src={property.image_url} alt={property.title} />
+      <Col lg={3} className="mr-1 ml-3 d-none d-lg-block">
+      {property.image_url? <img src={property.image_url} alt={property.title} /> : <img src={property.image} alt={property.title} /> }
       </Col>
 
       <Col sx={12} lg={9} className="mt-1">

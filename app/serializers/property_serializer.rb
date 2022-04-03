@@ -1,9 +1,12 @@
 class PropertySerializer < ActiveModel::Serializer
 
-   attributes :id, :title, :description, :city, :country, :property_type, 
-   :price_per_night, :max_guests, :bedrooms, :beds, :baths, :updated_at
+   include Rails.application.routes.url_helpers
 
-   def updated_at
-      object.updated_at.to_date
+   attributes :id, :title, :description, :city, :country, :property_type, 
+   :price_per_night, :max_guests, :bedrooms, :beds, :baths, :image
+
+   def image
+      if object.image.attached?
+         rails_blob_url(object.featured_image)
    end
 end

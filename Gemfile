@@ -51,7 +51,7 @@ gem "webrick", "~> 1.7"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.10.3', require: false
 
-gem 'active_model_serializers'
+#gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

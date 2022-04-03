@@ -8,9 +8,7 @@ Rails.application.routes.draw do
   get '/property/:id'              => 'static_pages#property'
   get '/property/:username'        => 'static_pages#get_property_by_user_id'
 
-  get '/account/changepw'          => 'static_pages#change_password' 
-                                  #I know this one is super difficlut. But I want to try. 
-
+  #Home Page Section
   get '/login'                     => 'static_pages#login'
   get '/signup'                    => 'static_pages#signup'
 
@@ -21,18 +19,14 @@ Rails.application.routes.draw do
   get '/account/booking'           => 'static_pages#booking'
   get '/account/booking/:id'       => 'static_pages#get_booking_by_booking_id'
 
-
   get '/account/property'          => 'static_pages#user_property'
   get '/account/property/add'      => 'static_pages#add_user_property' 
-  #a form to let user add new property
   get '/account/property/:id/edit' => 'static_pages#edit_user_property' 
   get '/account/property/:id'      => 'static_pages#listing_user_property' 
 
   get '/account/rental'            => 'static_pages#rental'
-  get '/account/rental/:id'        => 'static_pages#get_rental_by_booking_id'
 
   get '/account/*path'             => 'static_pages#wrong_path'
-
 
   #-----------------------------------------------------------------------------
 
