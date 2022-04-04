@@ -30,6 +30,7 @@ class BookingWidget extends React.Component {
 
   getPropertyBookings = () => {
     fetch(`/api/properties/${this.props.property_id}/bookings`)
+    //getting upcoming bookings
       .then(handleErrors)
       .then(data => {
         console.log(data);

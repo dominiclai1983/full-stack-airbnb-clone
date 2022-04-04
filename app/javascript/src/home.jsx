@@ -15,6 +15,7 @@ import AddProperty from './account/addProperty';
 import ListingProperty from './account/listingProperty';
 import EditProperty from './account/editProperty';
 import Rental from './account/rental';
+import Wrong from './wrong/wrong';
 
 import './home.scss';
 
@@ -40,9 +41,8 @@ class Home extends React.Component {
 
  render (){
 
-
   return (
-    <React.Fragment>
+    <>
       <Layout>
         <BrowserRouter>
           <Routes>
@@ -60,11 +60,12 @@ class Home extends React.Component {
                 <Route path="property/:id" element={<ListingProperty />} />
                 <Route path="property/:id/edit" element={<EditProperty />} />
                 <Route path="rental" element={<Rental />} /> 
+                <Route path="*" element={<Wrong />} /> 
               </Route>
           </Routes>
         </BrowserRouter>
       </Layout>
-    </React.Fragment>
+    </>
   );
  }
 }

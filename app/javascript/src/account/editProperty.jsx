@@ -4,7 +4,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Image from 'react-bootstrap/Image';
 import {
   propertyTypeArray, 
   oneToTwentyRangeArray,
@@ -28,11 +27,11 @@ const EditProperty = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [propertyType, setPropertyType] = useState('Studio');//:property_type-
-  const [maxGuests, setMaxGuests] = useState(0);
+  const [maxGuests, setMaxGuests] = useState(0); //:max_guests
   const [bedrooms, setBedRooms] = useState(0);
   const [beds, setBeds] = useState(0);
   const [baths, setBaths] = useState(0);
-  const [pricePerNight, setPricePerNight] = useState(0);
+  const [pricePerNight, setPricePerNight] = useState(0);//:price_per_night
   const [imageUrl, setImageUrl] = useState("");
 
   const [image, setImage] = useState(null);

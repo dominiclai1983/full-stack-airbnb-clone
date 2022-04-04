@@ -1,2 +1,2 @@
 // singup.js
-import '@src/wrong';
+import '@src/home';

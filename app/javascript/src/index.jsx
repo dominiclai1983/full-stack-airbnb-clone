@@ -1,15 +1,6 @@
 // home.jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Layout from '@src/layout';
-import Login from './login/login';
-import AccountHome from './account/accountHome'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { handleErrors } from '@utils/fetchHelper';
-import AccountLayout from './account/accountLayout';
-import Booking from './account/booking';
-import Wrong from './wrong/wrong';
-import UserProperty from './account/userProperty';
 
 import './home.scss';
 

@@ -8,6 +8,11 @@ class StaticPagesController < ApplicationController
     render 'property'
   end
 
+  def success
+    @booking = { booking_id:params[:id] }.to_json
+    render 'success'
+  end
+
   def login
     render 'login'
   end
@@ -19,6 +24,8 @@ class StaticPagesController < ApplicationController
   def account
     render 'account'
   end
+
+
 
   def account_home
     render 'account_home'

@@ -8,5 +8,12 @@ json.bookings do
     json.start_date booking.start_date
     json.end_date booking.end_date
     json.days (booking.end_date - booking.start_date).to_i
+
+    if booking.property.image.attached?
+      json.image url_for(booking.property.image)
+    else
+      json.image nil
+    end
+
   end
 end

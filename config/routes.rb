@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/property/:id'              => 'static_pages#property'
   get '/property/:username'        => 'static_pages#get_property_by_user_id'
 
+  #TODO: for the success method
+  get '/booking/:id/success'       => 'static_pages#success'
+
   #Home Page Section
   get '/login'                     => 'static_pages#login'
   get '/signup'                    => 'static_pages#signup'
@@ -38,18 +41,22 @@ Rails.application.routes.draw do
     resources :properties, only: [:index, :show]
     resources :bookings, only: [:create]
     resources :charges, only: [:create]
+    #TODO: let's see how those rsources work!
 
     delete '/sessions'              => 'sessions#destroy'
 
     get  '/bookings'                => 'bookings#booking_sort_by_upcoming'
     get  '/bookings/completed'      => 'bookings#booking_sort_by_completed'
+    get  '/booking/:id'             => 'bookings#get_booking_by_id'
+    put  '/booking/:id/dispatch'    => 'bookings#booking_mark_dispatch'
 
     get  '/authenticated'           => 'sessions#authenticated'
     get  '/properties/:id/bookings' => 'bookings#get_property_upcoming_bookings'
     get  '/properties/:id/completed'=> 'bookings#get_property_completed_bookings'
-    get  '/properties/'             => 'properties#get_property_by_user_id'
+    get  '/properties'              => 'properties#index'
 
     get  '/rental'                  => 'bookings#rental_sort_by_upcoming'
+    get  '/rental/properties'       => 'properties#get_property_by_user_id'
     get  '/rental/completed'        => 'bookings#rental_sort_by_completed'
 
     post '/properties'              => 'properties#create'

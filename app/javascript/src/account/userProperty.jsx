@@ -12,6 +12,9 @@ import './userProperty.scss';
 const UserProperty = () => {
 
   const [properties, setProperties] = useState([]);
+  const [total_pages, setTotalPages] = useState(null);
+  const [next_page, setNextPage] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -20,10 +23,12 @@ const UserProperty = () => {
 
       setIsError(false);
       try{
-        const result = await axios.get('/api/properties',
+        const result = await axios.get('/api/rental/properties?page=1',
         );
         setProperties(result.data.properties);
-        console.log(result.data.properties);
+        setTotalPages(result.data.total_pages);
+        setNextPage(result.data.next_page);
+        setLoading(false);
       }catch(error){
         setIsError(true);
       }
@@ -31,6 +36,26 @@ const UserProperty = () => {
     fetchData();
     
   }, []);
+
+  const loadMore = async () => {
+    if (next_page === null){
+      return;
+    }
+    setLoading(true);
+
+    setIsError(false);
+    try{
+      const result = await axios.get(`/api/rental/properties?page=${next_page}`,
+      );
+      setProperties(result.data.properties);
+      setTotalPages(result.data.total_pages);
+      setNextPage(result.data.next_page);
+      setLoading(false);
+    }catch(error){
+      setIsError(true);
+    }
+
+  }
 
   return (
     <>
@@ -53,6 +78,15 @@ const UserProperty = () => {
             })}
           </Col>
         </Row>
+        {loading && <p>loading...</p>}
+        {(loading || next_page === null) ||
+            <div className="text-center">
+              <button
+                className="btn btn-light mb-4"
+                onClick={loadMore}
+              >load more</button>
+            </div>
+          }
       </Container>
     </>
   )

@@ -20,7 +20,7 @@ module Api
       session = Session.find_by(token: token)
 
       if session
-        @properties = session.user.properties
+        @properties = session.user.properties.page(params[:page]).per(6)
         render 'api/properties/index', status: :ok
       else
         render json: {properties: []}

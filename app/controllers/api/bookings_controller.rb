@@ -16,6 +16,39 @@ module Api
       end
     end
 
+    def get_booking_by_id
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+      return render json: { error: 'user not logged in' }, status: :unauthorized if !session
+
+      if session
+        @booking = session.user.bookings.find(params[:id])
+        render 'api/bookings/success', status: :created
+      else
+        render json: {bookings: []}
+      end
+       
+    end
+
+    def booking_mark_dispatch
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      if session 
+        @booking = session.user.bookings.find_by(id: params[:id])
+
+        @booking.dispatch = true
+        if @booking.save(:validate => false)
+          render json: { success: true }
+        else
+          render json: { success: false }
+        end
+
+      else
+        render json: { success: false }
+      end
+    end
+
     def rental_sort_by_upcoming
 
       token = cookies.signed[:airbnb_session_token]

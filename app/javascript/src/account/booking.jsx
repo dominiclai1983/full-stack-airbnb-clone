@@ -72,6 +72,7 @@ const Booking = () => {
           </Col>
 
           <Col xs={12}>
+          {bookings.length === 0? <h6>More Booking Soon!</h6> : null}
           {bookings.map((booking, index) => {
             return <BookingList key={booking.id} booking={booking} index={index} mode={mode} />
           })}
