@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+=begin
 users = User.create([
   { username: 'Tommy', email: 'tommy@test.com', password: 'password' },
   { username: 'Bobby', email: 'bobby@test.com', password: 'password' },
@@ -253,41 +253,46 @@ properties = Property.create([
     user: users.last
   }
 ])
-
+=end
 bookings = Booking.create([{
     start_date: DateTime.new(2022,4,2),
     end_date: DateTime.new(2022,4,4),
-    user_id: 3,
-    property_id: 129
+    user_id: 6,
+    property_id: 1
   },{
     start_date: DateTime.new(2022,4,5),
     end_date: DateTime.new(2022,4,7),
     user_id: 4,
-    property_id: 129
+    property_id: 1
   },{
     start_date: DateTime.new(2022,4,8),
     end_date: DateTime.new(2022,4,10),
     user_id: 5,
-    property_id: 129
+    property_id: 1
   },{
     start_date: DateTime.new(2022,1,1),
     end_date: DateTime.new(2022,1,3),
     user_id: 5,
-    property_id: 129
+    property_id: 1
   },{
     start_date: DateTime.new(2022,1,3),
     end_date: DateTime.new(2022,1,5),
     user_id: 5,
-    property_id: 129
+    property_id: 1
   },{
     start_date: DateTime.new(2022,1,5),
     end_date: DateTime.new(2022,1,7),
     user_id: 5,
-    property_id: 129
+    property_id: 1
   },{
     start_date: DateTime.new(2022,1,7),
     end_date: DateTime.new(2022,1,9),
     user_id: 5,
-    property_id: 129
+    property_id: 1
+  },{
+    start_date: DateTime.new(2022,4,2),
+    end_date: DateTime.new(2022,4,4),
+    user_id: 3,
+    property_id: 2
   }
 ])
