@@ -84,16 +84,21 @@ const ListingProperty = () => {
     )
   }
 
+  const imageLogic = () => {
+    if((property.image_url && property.image) || property.image){
+      return property.image;
+    }else{
+      return property.image_url;
+    }
+  }
+
   return (
     <>
       <Container fluid>
         <Row>
           <div className="d-flex my-1">
             <Col lg={5} className="mr-1 ml-3 d-none d-lg-block">
-              {property.image_url? 
-                <Image src={property.image_url} rounded style={{width: "175px", height: "131px"}}/> :
-                <Image src={property.image} rounded style={{width: "175px", height: "131px"}}/> 
-              }
+              <Image src={imageLogic()} rounded style={{width: "175px", height: "131px"}}/> :
             </Col>
             <Col xs={12} lg={7}>
             <div className="d-flex align-items-center">
