@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-=begin
+
 users = User.create([
   { username: 'Tommy', email: 'tommy@test.com', password: 'password' },
   { username: 'Bobby', email: 'bobby@test.com', password: 'password' },
@@ -253,7 +253,6 @@ properties = Property.create([
     user: users.last
   }
 ])
-=end
 
 bookings = Booking.create([{
     start_date: DateTime.new(2022,4,2),

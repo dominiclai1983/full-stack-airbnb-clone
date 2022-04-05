@@ -58,9 +58,7 @@ class Property extends React.Component {
       bedrooms,
       beds,
       baths,
-      image_url,
       user,
-      image
     } = property
 
     return (

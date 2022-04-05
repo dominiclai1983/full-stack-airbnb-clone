@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 import BookingList from './component/bookinglist';
-import { Link } from "react-router-dom";
 import axios from 'axios';
 
 import './booking.scss'
