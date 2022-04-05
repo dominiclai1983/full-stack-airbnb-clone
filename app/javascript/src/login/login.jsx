@@ -26,7 +26,6 @@ class Login extends React.Component {
   }
 
   render () {
-    const { authenticated, show_login } = this.state;
 
     return (
       <>

@@ -36,6 +36,7 @@ const AccountLayout = () => {
           </Col>
           <Col xs={10}>
             <Outlet />
+            {/* by using outlet as placeholder instant of props */}
           </Col>
         </Row>
       </Container>

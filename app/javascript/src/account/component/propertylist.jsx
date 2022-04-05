@@ -12,7 +12,7 @@ const PropertyList = (props) => {
       </Col>
 
       <Col xs={12} lg={9} className="mt-1">
-      <h5>{property.title}</h5>
+      <h5 className="text-secondary">{property.title}</h5>
       <p>Property ID: {property.id}</p>
       </Col>
     </div>

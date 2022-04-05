@@ -47,7 +47,11 @@ const UserProperty = () => {
     try{
       const result = await axios.get(`/api/rental/properties?page=${next_page}`,
       );
-      setProperties(result.data.properties);
+      setProperties([...properties, ...result.data.properties]);
+      /*
+      spreading operator [...properties, ...result.data.properties] = 
+      properties.concat(result.data.properties);
+      */
       setTotalPages(result.data.total_pages);
       setNextPage(result.data.next_page);
       setLoading(false);

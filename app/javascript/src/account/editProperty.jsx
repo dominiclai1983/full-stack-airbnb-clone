@@ -1,3 +1,6 @@
+//account -> your properties -> properties id -> change property
+//account/property/:id/edit
+//:id = let params = useParams();
 import React, {useState, useEffect} from 'react'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -17,16 +20,16 @@ import { Link } from "react-router-dom";
 import './addProperty.scss'
 
 const EditProperty = () => {
-  //:title-, :description-, :city, :country, :property_type-, 
-  //:price_per_night-, :max_guests-, :bedrooms-, :beds-, :baths-
-  //
+  //:title, :description, :city, :country, :property_type, 
+  //:price_per_night, :max_guests, :bedrooms, :beds, :baths
+  //marker for all the field
 
   let params = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [propertyType, setPropertyType] = useState('Studio');//:property_type-
+  const [propertyType, setPropertyType] = useState('Studio');//:property_type
   const [maxGuests, setMaxGuests] = useState(0); //:max_guests
   const [bedrooms, setBedRooms] = useState(0);
   const [beds, setBeds] = useState(0);
@@ -34,16 +37,16 @@ const EditProperty = () => {
   const [pricePerNight, setPricePerNight] = useState(0);//:price_per_night
   const [imageUrl, setImageUrl] = useState("");
 
-  const [image, setImage] = useState(null);
-  const [previewImage, setPreviewImage] = useState(null);
+  const [image, setImage] = useState(null);//real variable to hold the photo
+  const [previewImage, setPreviewImage] = useState(null);//place holder for preview image ONLY
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`/api/properties/${params.id}`, 
       );
+      //pulling the data for specific property by id
       if(result.data){
         let data = {...result.data.property};
-        console.log(data)
         setTitle(data.title);
         setDescription(data.description);
         setCity(data.city);
@@ -55,6 +58,10 @@ const EditProperty = () => {
         setBaths(data.baths);
         setPricePerNight(data.price_per_night);
         
+        /*image checker: data.image was added in later stage of development before that image was holding
+        by field [:imageUrl]. getting the image by either one of field. if both present, always prefer the image with
+        from active storage
+        */
         if((data.image_url && data.image) || (data.image)){
           setImageUrl(data.image);
         }else{
@@ -65,22 +72,10 @@ const EditProperty = () => {
     fetchData();
   }, [])
 
+  //event to handle file input field change
   const handleChange = (event) => {
-    setPreviewImage(window.URL.createObjectURL(event.target.files[0]));
+    setPreviewImage(window.URL.createObjectURL(event.target.files[0]));//once again, placeholder for previewImage
     setImage(event.target.files[0]);
-  }
-
-  const property = {
-    title: title,
-    description: description,
-    city: city,
-    country: country,
-    property_type: propertyType,
-    max_guests: maxGuests,
-    bedrooms: bedrooms,
-    beds: beds,
-    baths: baths,
-    price_per_night: pricePerNight
   }
 
   const handleSubmit = (event) => {
@@ -101,9 +96,8 @@ const EditProperty = () => {
     formData.append('property[price_per_night]',pricePerNight);
     formData.append('property[image]',image);
 
-    axios.put(`/api/properties/${params.id}`, property)
+    axios.put(`/api/properties/${params.id}`, formData)
       .then(res => {
-        console.log(res.data);
         if(res.data){
           document.location.href=`/account/property/${params.id}`;
         }
@@ -115,6 +109,7 @@ const EditProperty = () => {
     <>
       <h2>Edit Your Property</h2>
       <Tabs defaultActiveKey="property" id="uncontrolled-tab-example">
+        {/* first tag for property details */}
         <Tab eventKey="property" title="Details">
           <Form className="mt-2">
               {/* -- :title -- */}
@@ -251,6 +246,7 @@ const EditProperty = () => {
           </Form>
         </Tab>
         <Tab eventKey="image" title="Image">
+        {/* 2nd tag for updating image */}
           <UpdateImage previewImage={previewImage} imageUrl={imageUrl} handleChange={handleChange} />
         </Tab>
       </Tabs> 

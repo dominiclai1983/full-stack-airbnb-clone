@@ -1,3 +1,6 @@
+//account -> properties -> single properties dashboards ->
+//account/property/:id 
+// :id = let params = useParams();
 import React, {useState, useEffect} from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -16,7 +19,7 @@ const ListingProperty = () => {
   let params = useParams();
   const [bookings, setBookings] = useState([]);
   const [property, setProperty] = useState({});
-  const [mode, setMode] = useState('upcoming');
+  const [mode, setMode] = useState('upcoming');//has two states, upcoming and completed
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -31,8 +34,8 @@ const ListingProperty = () => {
       setIsError(false);
       try{
         const result = await axios.get(`/api/properties/${params.id}`, );
+        //getting details of specific property according to property_id
         if(result.data){
-          console.log(result.data);
           setProperty(result.data.property);
         }
       }catch(error){
@@ -46,8 +49,8 @@ const ListingProperty = () => {
     setIsError(false);
     try{
       const result = await axios.get(`/api/properties/${params.id}/bookings`, );
+      //getting details of upcoming bookings, default loading information when loading the page
       if(result.data){
-        console.log(result.data.bookings);
         setBookings(result.data.bookings);
       }
     }catch(error){
@@ -59,9 +62,9 @@ const ListingProperty = () => {
     setIsError(false);
     try{
       const result = await axios.get(`/api/properties/${params.id}/completed`, 
+      //getting details of completed bookings, shown when user click completed button
       );
       if(result.data){
-        console.log(result.data.bookings);
         setBookings(result.data.bookings);
       }
     }catch(error){
@@ -74,6 +77,7 @@ const ListingProperty = () => {
     return result[1];
   }
   
+  // <NoBooking /> shown when property.length === 0, i.e no booking at all
   const NoBooking = () => {
     return (
       <h5 className="text-warning">More Booking Is Coming!</h5>

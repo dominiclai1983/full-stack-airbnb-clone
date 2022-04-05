@@ -1,3 +1,5 @@
+//account -> properties -> add property
+//account/property
 import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -16,18 +18,19 @@ import { Link } from "react-router-dom";
 import './addProperty.scss'
 
 const AddProperty = () => {
-  //:title-, :description-, :city, :country, :property_type-, 
-  //:price_per_night-, :max_guests-, :bedrooms-, :beds-, :baths-
+  //:title, :description, :city, :country, :property_type, 
+  //:price_per_night, :max_guests, :bedrooms, :beds, :baths
+  //marker for all the field
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [propertyType, setPropertyType] = useState(propertyTypeArray[0]);//:property_type-
-  const [maxGuests, setMaxGuests] = useState(0);
+  const [propertyType, setPropertyType] = useState(propertyTypeArray[0]); //:property_type
+  const [maxGuests, setMaxGuests] = useState(0); //:max_guests
   const [bedrooms, setBedRooms] = useState(0);
   const [beds, setBeds] = useState(0);
-  const [baths, setBaths] = useState(0);
+  const [baths, setBaths] = useState(0); //:price_per_night
   const [pricePerNight, setPricePerNight] = useState(0);
 
   const [image, setImage] = useState(null);
@@ -58,8 +61,9 @@ const AddProperty = () => {
 
     axios.post('/api/properties', formData)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        if(res.data){
+          document.location.href="/account/property";
+        }
       })
   }
 

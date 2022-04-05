@@ -51,16 +51,18 @@ Rails.application.routes.draw do
     put  '/booking/:id/dispatch'    => 'bookings#booking_mark_dispatch'
 
     get  '/authenticated'           => 'sessions#authenticated'
-    get  '/properties/:id/bookings' => 'bookings#get_property_upcoming_bookings'
-    get  '/properties/:id/completed'=> 'bookings#get_property_completed_bookings'
-    get  '/properties'              => 'properties#index'
 
     get  '/rental'                  => 'bookings#rental_sort_by_upcoming'
     get  '/rental/properties'       => 'properties#get_property_by_user_id'
     get  '/rental/completed'        => 'bookings#rental_sort_by_completed'
 
     post '/properties'              => 'properties#create'
+    get  '/properties'              => 'properties#index'
+
     get  '/properties/:id'          => 'properties#show'
+    get  '/properties/:id/bookings' => 'bookings#get_property_upcoming_bookings'
+    get  '/properties/:id/completed'=> 'bookings#get_property_completed_bookings'
+
     put  '/properties/:id'          => 'properties#edit'
 
     get  '/user'                    => 'users#show'

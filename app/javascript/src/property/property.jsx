@@ -7,9 +7,15 @@ import { handleErrors } from '@utils/fetchHelper';
 import './property.scss';
 
 class Property extends React.Component {
-  state = {
-    property: {},
-    loading: true,
+
+  constructor(props){
+    super(props);
+    this.state = {
+      property: {},
+      loading: true,
+    }
+
+    this.imageLogic = this.imageLogic.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +27,17 @@ class Property extends React.Component {
           loading: false,
         })
       })
+  }
+
+  imageLogic(){
+
+    let {image_url, image} = this.state.property;
+
+    if((image_url && image) || image){
+      return image;
+    }else{
+      return image_url;
+    }
   }
 
   render () {
@@ -43,11 +60,12 @@ class Property extends React.Component {
       baths,
       image_url,
       user,
+      image
     } = property
 
     return (
       <Layout>
-        <div className="property-image mb-3" style={{ backgroundImage: `url(${image_url})` }} />
+        <div className="property-image mb-3" style={{ backgroundImage: `url(${this.imageLogic()})` }} />
         <div className="container">
           <div className="row">
             <div className="info col-12 col-lg-7">

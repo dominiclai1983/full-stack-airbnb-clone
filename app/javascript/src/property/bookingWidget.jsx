@@ -33,7 +33,6 @@ class BookingWidget extends React.Component {
     //getting upcoming bookings
       .then(handleErrors)
       .then(data => {
-        console.log(data);
         this.setState({
           existingBookings: data.bookings,
         })

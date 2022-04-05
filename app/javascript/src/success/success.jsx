@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
+import './success.scss';
+
 const Success = (props) => {
 
   let {booking_id} = props;
@@ -13,7 +15,7 @@ const Success = (props) => {
 
     const fetchData = async () => {
       setDispatch(false);
-      const result = await axios.get(`../../api/booking/${booking_id}`,
+      const result = await axios.get(`/api/booking/${booking_id}`,
       );
       console.log(result.data);
       let booking = {...result.data.booking};
@@ -27,12 +29,14 @@ const Success = (props) => {
     fetchData();
   },[])
 
+
   useEffect(() => {
     const timer = setTimeout(() => {
       handleDispatch();
-    }, 5000);
+    }, 7000);
     return () => clearTimeout(timer);
   },[]);
+
 
   const handleDispatch = () => {
     axios.put(`../../api/booking/${booking_id}/dispatch`,)
@@ -44,7 +48,7 @@ const Success = (props) => {
   }
 
   return (
-    <div className={display? "text-center" : "d-none"}>
+    <div className={display? "text-center" : "d-none"} id="wrapper">
       <h4>Your Booking With ID {booking_id} Is Success!</h4>
       <h6>You will be redirected back to the site soon!</h6>
     </div>

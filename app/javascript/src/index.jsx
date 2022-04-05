@@ -15,10 +15,7 @@ class Index extends React.Component {
 
   componentDidMount() {
 
-    /* fetch('/api/properties?page=1') */
-    const LISTING_URL = process.env.LISTING_URL;
-
-    fetch(LISTING_URL+1)
+    fetch('/api/properties?page=1')
       .then(handleErrors)
       .then(data => {
         this.setState({
@@ -37,11 +34,8 @@ class Index extends React.Component {
       return;
     }
     this.setState({ loading: true });
-    /*fetch(`/api/properties?page=${this.state.next_page}`)*/
-    /* testing out how to use ENV varaiable only */
-    const LISTING_URL = process.env.LISTING_URL;
 
-    fetch(LISTING_URL+this.state.next_page)
+    fetch(`/api/properties?page=${this.state.next_page}`)
       .then(handleErrors)
       .then(data => {
         this.setState({

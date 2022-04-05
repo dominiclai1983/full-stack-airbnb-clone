@@ -1,3 +1,4 @@
+//account -> booking -> list of bookings 
 import React from 'react'
 import Col from 'react-bootstrap/Col';
 import './bookinglist.scss';

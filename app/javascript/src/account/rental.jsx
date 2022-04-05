@@ -1,3 +1,5 @@
+//account -> rental
+//account/property
 import React, { useState, useEffect} from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -30,7 +32,6 @@ const Rental = () => {
       const result = await axios.get('/api/rental',
       );
       setRentals(result.data.bookings);
-      console.log(result.data.bookings);
     }catch(error){
       setIsError(true);
     }
@@ -43,7 +44,6 @@ const Rental = () => {
       const result = await axios.get('/api/rental/completed',
       );
       setRentals(result.data.bookings);
-      console.log(result.data.bookings);
     }catch(error){
       setIsError(true);
     }

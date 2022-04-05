@@ -1,9 +1,12 @@
+//account -> booking
+//account/booking
 import React, {useEffect, useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 import BookingList from './component/bookinglist';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 import './booking.scss'
@@ -73,8 +76,17 @@ const Booking = () => {
 
           <Col xs={12}>
           {bookings.length === 0? <h6>More Booking Soon!</h6> : null}
+          {/*
+            cause we did not include each property page in react route. 
+            So writing abs link at here
+            */}
           {bookings.map((booking, index) => {
-            return <BookingList key={booking.id} booking={booking} index={index} mode={mode} />
+            let link = "../../property/"+(booking.propertyID);
+            return (
+            <a href={link} key={booking.id}>
+              <BookingList booking={booking} index={index} mode={mode} />
+            </a>
+            )
           })}
           </Col>
         </Row>
