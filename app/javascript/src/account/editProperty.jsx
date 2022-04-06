@@ -46,7 +46,9 @@ const EditProperty = () => {
       );
       //pulling the data for specific property by id
       if(result.data){
+
         let data = {...result.data.property};
+
         setTitle(data.title);
         setDescription(data.description);
         setCity(data.city);
@@ -146,7 +148,6 @@ const EditProperty = () => {
                 <Form.Label><i className="fas fa-home"></i> Property Country 
                 </Form.Label>
                 <Form.Control as="select" value={country} onChange={(event) => {
-                  console.log(event.target.value);
                   setCountry(event.target.value);
                 }}>
                   {Object.entries(countryListAlpha2).map(([key, item], index) => {
@@ -170,7 +171,6 @@ const EditProperty = () => {
                 <Form.Label><i className="fas fa-home"></i> Property Type 
                 </Form.Label>
                 <Form.Control as="select" value={propertyType} onChange={(event) => {
-                  console.log(event.target.value);
                   setPropertyType(event.target.value);
                 }}>
                   {propertyTypeArray.map((item,key) => {
@@ -184,7 +184,6 @@ const EditProperty = () => {
                 <Form.Label><i className="fas fa-user"></i> Number of Guests Allowed 
                 </Form.Label>
                 <Form.Control as="select" value={maxGuests} onChange={(event) => {
-                  console.log(event.target.value);
                   setMaxGuests(event.target.value);
                 }}>
                   {oneToTwentyRangeArray().map((item, key) => {
@@ -198,7 +197,6 @@ const EditProperty = () => {
                 <Form.Label><i className="fas fa-door-open"></i> Number of Bedrooms 
                 </Form.Label>
                 <Form.Control as="select" value={bedrooms} onChange={(event) => {
-                  console.log(event.target.value);
                   setBedRooms(event.target.value);
                 }}>
                   {oneToTwentyRangeArray().map((item, key) => {
@@ -212,7 +210,6 @@ const EditProperty = () => {
                 <Form.Label><i className="fas fa-bed"></i> Number of Beds 
                 </Form.Label>
                 <Form.Control as="select" value={beds} onChange={(event) => {
-                  console.log(event.target.value);
                   setBeds(event.target.value);
                 }}>
                   {oneToTwentyRangeArray().map((item, key) => {
@@ -226,7 +223,6 @@ const EditProperty = () => {
                 <Form.Label><i className="fas fa-bath"></i> Number of Baths 
                 </Form.Label>
                 <Form.Control as="select" value={baths} onChange={(event) => {
-                  console.log(event.target.value);
                   setBaths(event.target.value);
                 }}>
                   {oneToTwentyRangeArray().map((item, key) => {

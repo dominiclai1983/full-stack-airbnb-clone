@@ -115,7 +115,6 @@ const AddProperty = () => {
                 as="select" 
                 value={country} 
                 onChange={(event) => {
-                console.log(event.target.value);
                 setCountry(event.target.value);
               }}>
                 {Object.entries(countryListAlpha2).map(([key, item], index) => {
@@ -146,7 +145,6 @@ const AddProperty = () => {
                 as="select" 
                 value={propertyType} 
                 onChange={(event) => {
-                console.log(event.target.value);
                 setPropertyType(event.target.value);
               }}>
                 {propertyTypeArray.map((item,key) => {
@@ -163,7 +161,6 @@ const AddProperty = () => {
                 as="select"
                 value={maxGuests} 
                 onChange={(event) => {
-                console.log(event.target.value);
                 setMaxGuests(event.target.value);
               }}>
                 {oneToTwentyRangeArray().map((item, key) => {
@@ -196,7 +193,6 @@ const AddProperty = () => {
                 as="select" 
                 value={beds} 
                 onChange={(event) => {
-                console.log(event.target.value);
                 setBeds(event.target.value);
               }}>
                 {oneToTwentyRangeArray().map((item, key) => {
@@ -213,7 +209,6 @@ const AddProperty = () => {
                 as="select" 
                 value={baths} 
                 onChange={(event) => {
-                console.log(event.target.value);
                 setBaths(event.target.value);
               }}>
                 {oneToTwentyRangeArray().map((item, key) => {
